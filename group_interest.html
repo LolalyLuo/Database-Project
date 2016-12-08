@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <table>
+        <th>group ID</th>
+        <th>group name</th>
+        <th>group description</th>
+        <th>group creator</th>
+
+        {% for line in group_info %}
+        <tr>
+            <td>{{line.group_id}}</td>
+            <td>{{line.group_name}}</td>
+            <td>{{line.description}}</td>
+            <td>{{line.creator}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+
+</html>

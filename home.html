@@ -1,0 +1,72 @@
+<html>
+<head>
+</head>
+<body>
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Group blongs to</th>
+
+{% for line in group_info %}
+	<tr>
+		<td>{{line.group_name}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<h3>Upcoming events in 3 days</h3>
+<table>
+    <th>Event Id </th>
+    <th>Title </th>
+    <th>Start Time </th>
+    <th>Location Name </th>
+    <th>Zipcode </th>
+
+    {% for line in event_info %}
+    <tr>
+        <td>{{line.event_id}}</td>
+        <td>{{line.title}}</td>
+        <td>{{line.start_time}}</td>
+        <td>{{line.location_name}}</td>
+        <td>{{line.zipcode}}</td>
+    </tr>
+    {% endfor %}    
+</table>
+
+<h3>Events you might be interested</h3>
+<table>
+    <th>Event Id </th>
+    <th>Title </th>
+    <th>Start Time </th>
+    <th>Location Name </th>
+    <th>Zipcode </th>
+
+    {% for line in int_event_info %}
+    <tr>
+        <td>{{line.event_id}}</td>
+        <td>{{line.title}}</td>
+        <td>{{line.start_time}}</td>
+        <td>{{line.location_name}}</td>
+        <td>{{line.zipcode}}</td>
+    </tr>
+    {% endfor %}    
+</table>
+
+    <form action="/sign_up" method="POST">
+        <input type="text" name="event_id" placeholder="event_id" required /> </br>
+        <input type="submit" value=sig_me_up! />
+    </form>
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

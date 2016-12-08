@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+
+{% if not message %}
+	<a href="/login">Login</a>
+	<a href="/register">Register</a>
+
+    <h1>Welcome to FindFolks</h1>
+       
+
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h2>Upcoming Events in 3 Days</h2>
+    <table>
+        <th>Upcoming Event Id </th>
+        <th>Title </th>
+        <th>Start Time </th>
+        <th>Location Name </th>
+        <th>Zipcode </th>
+
+        {% for line in event_info %}
+        <tr>
+            <td>{{line.event_id}}</td>
+            <td>{{line.title}}</td>
+            <td>{{line.start_time}}</td>
+            <td>{{line.location_name}}</td>
+            <td>{{line.zipcode}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Interests</h2>
+    <table>
+        <th>Category</th>
+        <th>Keyword </th>
+
+        {% for line in interest_info %}
+        <tr>
+            <td>{{line.category}}</td>
+            <td>{{line.keyword}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/group_interest_search" method="POST">
+        <h3>According to the table above, choose your interest</h3>
+        <input type="text" name="categoty" placeholder="category" required /> </br>
+        <input type="text" name="keyword" placeholder="keyword" required /> </br>
+        <input type="submit" value=search />
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+    </form>
+
+{% endif %}
+
+{% if message %}
+	<a href="/logout">Logout</a>
+	<a href="/remove_account">Remove Account</a>
+	<p class="message">You are logged in {{message}}. You have {{num}} follower(s)</p> </br>
+	<a href="/tweets">View your tweets</a> </br>
+	<a href="/find_people">Find people to follow</a> </br>
+	<a href="/unfollow">Unfollow someone</a> </br>
+	<a href="/view_followed">View people you have followed</a> </br>
+	</br>
+
+        <h4>15 most recent tweets from you and your followers </h4> </br>
+
+	{% for line in tweets%}
+	        <p>{{line}}</p>
+	        <hr>
+	{% endfor %}
+	{% endif %}
+</body>
+
+</html>
